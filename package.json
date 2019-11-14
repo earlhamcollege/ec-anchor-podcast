@@ -1,0 +1,25 @@
+{
+  "name": "ec-anchor-podcast-widgets",
+  "version": "1.0.1",
+  "description": "Display podcast via the Anchor.fm service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/earlhamcollege/ec-anchor-podcast.git"
+  },
+  "keywords": [
+    "apostrophe-cms"
+  ],
+  "author": "Porter Libby",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/earlhamcollege/ec-anchor-podcast/issues"
+  },
+  "homepage": "https://github.com/earlhamcollege/ec-anchor-podcast#readme",
+  "dependencies": {
+
+  }
+}
