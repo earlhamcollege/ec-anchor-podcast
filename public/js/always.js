@@ -22,8 +22,6 @@ apos.define('ec-anchor-podcast-widgets', {
             var iframe = document.createElement('iframe');
             iframe.className = 'track_player';
             iframe.src = 'https://anchor.fm' + jsonTemp[trackNum];
-            iframe.height = "102px";
-            iframe.width = "400px";
             iframe.frameBorder = '0';
             iframe.scrolling = "no";
             
@@ -38,13 +36,14 @@ apos.define('ec-anchor-podcast-widgets', {
 
             // create label
             var index_label = document.createElement('span');
-            index_label.innerHTML = 'Track ' + (trackNum+1) + ' / ' + jsonTemp.length;
+            index_label.className = 'index_label';
+            index_label.innerHTML = (trackNum+1) + ' / ' + jsonTemp.length;
 
             // append elements to widget body
             $widget.find('.ec-anchor-podcast').append(iframe);
             btn_container.append(btn_prev);
-            btn_container.append(btn_next);
             btn_container.append(index_label);
+            btn_container.append(btn_next);
             $widget.find('.ec-anchor-podcast').append(btn_container);
             
             // next track function
@@ -52,7 +51,7 @@ apos.define('ec-anchor-podcast-widgets', {
                 if (trackNum < jsonTemp.length - 1){
                     trackNum++;
                     iframe.src = 'https://anchor.fm' + jsonTemp[trackNum];
-                    index_label.innerHTML = 'Track ' + (trackNum+1) + ' / ' + jsonTemp.length;
+                    index_label.innerHTML = (trackNum+1) + ' / ' + jsonTemp.length;
                 }
                 else{
                     console.error('Most recent track reached!')
@@ -64,7 +63,7 @@ apos.define('ec-anchor-podcast-widgets', {
                 if (trackNum > 0){
                     trackNum--;
                     iframe.src = 'https://anchor.fm' + jsonTemp[trackNum];
-                    index_label.innerHTML = 'Track ' + (trackNum+1) + ' / ' + jsonTemp.length;
+                    index_label.innerHTML = (trackNum+1) + ' / ' + jsonTemp.length;
                 }
                 else{
                     console.error('First track reached!')
