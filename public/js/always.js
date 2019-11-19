@@ -36,10 +36,15 @@ apos.define('ec-anchor-podcast-widgets', {
             btn_prev.innerHTML = 'Previous Podcast';
             btn_prev.className = 'prev_btn';
 
+            // create label
+            var index_label = document.createElement('span');
+            index_label.innerHTML = 'Track ' + (trackNum+1) + ' / ' + jsonTemp.length;
+
             // append elements to widget body
             $widget.find('.ec-anchor-podcast').append(iframe);
             btn_container.append(btn_prev);
             btn_container.append(btn_next);
+            btn_container.append(index_label);
             $widget.find('.ec-anchor-podcast').append(btn_container);
             
             // next track function
@@ -47,6 +52,7 @@ apos.define('ec-anchor-podcast-widgets', {
                 if (trackNum < jsonTemp.length - 1){
                     trackNum++;
                     iframe.src = 'https://anchor.fm' + jsonTemp[trackNum];
+                    index_label.innerHTML = 'Track ' + (trackNum+1) + ' / ' + jsonTemp.length;
                 }
                 else{
                     console.error('Most recent track reached!')
@@ -58,6 +64,7 @@ apos.define('ec-anchor-podcast-widgets', {
                 if (trackNum > 0){
                     trackNum--;
                     iframe.src = 'https://anchor.fm' + jsonTemp[trackNum];
+                    index_label.innerHTML = 'Track ' + (trackNum+1) + ' / ' + jsonTemp.length;
                 }
                 else{
                     console.error('First track reached!')
