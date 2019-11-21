@@ -17,35 +17,14 @@ apos.define('ec-anchor-podcast-widgets', {
             ];
             // start at most recent track
             var trackNum = jsonTemp.length - 1;
-
-            // create iframe
-            var iframe = document.createElement('iframe');
-            iframe.className = 'track_player';
+            // set iframe
+            var iframe = $widget.find('.track_player')[0];
+            console.log(iframe);
             iframe.src = 'https://anchor.fm' + jsonTemp[trackNum];
-            iframe.frameBorder = '0';
-            iframe.scrolling = "no";
-            
-            // create buttons for next and previous nav
-            var btn_container = document.createElement('div');
-            var btn_next = document.createElement('button');
-            btn_next.innerHTML = 'Next Podcast';
-            btn_next.className = 'next_btn';
-            var btn_prev = document.createElement('button');
-            btn_prev.innerHTML = 'Previous Podcast';
-            btn_prev.className = 'prev_btn';
-
-            // create label
-            var index_label = document.createElement('span');
-            index_label.className = 'index_label';
-            index_label.innerHTML = (trackNum+1) + ' / ' + jsonTemp.length;
-
-            // append elements to widget body
-            $widget.find('.ec-anchor-podcast').append(iframe);
-            btn_container.append(btn_prev);
-            btn_container.append(index_label);
-            btn_container.append(btn_next);
-            $widget.find('.ec-anchor-podcast').append(btn_container);
-            
+            // create label text
+            var index_label = $widget.find('.index_label')[0];
+            console.log(index_label);
+            index_label.innerText = (trackNum+1) + ' / ' + jsonTemp.length;
             // next track function
             $widget.find(".next_btn").click(function(){ 
                 if (trackNum < jsonTemp.length - 1){
