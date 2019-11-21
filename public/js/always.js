@@ -17,18 +17,24 @@ apos.define('ec-anchor-podcast-widgets', {
             ];
             // start at most recent track
             var trackNum = jsonTemp.length - 1;
+
             // set iframe
             var iframe = $widget.find('.track_player')[0];
             console.log(iframe);
             iframe.src = 'https://anchor.fm' + jsonTemp[trackNum];
+
             // create label text
             var index_label = $widget.find('.index_label')[0];
             console.log(index_label);
             index_label.innerText = (trackNum+1) + ' / ' + jsonTemp.length;
+
+            trackEnds();
+
             // next track function
             $widget.find(".next_btn").click(function(){ 
                 if (trackNum < jsonTemp.length - 1){
                     trackNum++;
+                    trackEnds();
                     iframe.src = 'https://anchor.fm' + jsonTemp[trackNum];
                     index_label.innerHTML = (trackNum+1) + ' / ' + jsonTemp.length;
                 }
@@ -41,6 +47,7 @@ apos.define('ec-anchor-podcast-widgets', {
             $widget.find(".prev_btn").click(function(){ 
                 if (trackNum > 0){
                     trackNum--;
+                    trackEnds();
                     iframe.src = 'https://anchor.fm' + jsonTemp[trackNum];
                     index_label.innerHTML = (trackNum+1) + ' / ' + jsonTemp.length;
                 }
@@ -48,6 +55,28 @@ apos.define('ec-anchor-podcast-widgets', {
                     console.error('First track reached!')
                 }
             });
+
+            // check for disable
+            function trackEnds(){
+                var next = $widget.find('.next_btn')[0];
+                var prev = $widget.find('.prev_btn')[0];
+                if (trackNum == 0){
+                    prev.setAttribute("disabled", true);
+                    next.removeAttribute("disabled");
+                }
+                else if (trackNum == jsonTemp.length-1){
+                    next.setAttribute("disabled", true);
+                    prev.removeAttribute("disabled");
+                }  
+                else if (jsonTemp.length - 1 < 1){
+                    next.setAttribute("disabled", true);
+                    prev.setAttribute("disabled", true);
+                } 
+                else{
+                    next.removeAttribute("disabled");
+                    prev.removeAttribute("disabled");
+                }
+            }
         };
     }
 });
